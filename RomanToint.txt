@@ -1,0 +1,112 @@
+class Solution {
+    public static int romanToInt(String s) {
+        int sum=0;
+        int n=s.length();
+        int i=0;
+        while(i<n) {
+        	char c=s.charAt(i);
+        switch(c){
+            case 'I':
+                if(i<n-1 && s.charAt(i+1)=='X') {
+                	sum+=9;
+                	i+=2;
+                }else if(i<n-1 && s.charAt(i+1)=='V') {
+                	sum+=4;
+                	i+=2;	
+                }else if(i<n-1 && s.charAt(i+1)=='L') {
+                	sum+=49;
+                	i+=2;
+                }else if(i<n-1 && s.charAt(i+1)=='C') {
+                	sum+=99;
+                	i+=2;
+                }else if(i<n-1 && s.charAt(i+1)=='D') {
+                	sum+=499;
+                	i+=2;
+                }else if(i<n-1 && s.charAt(i+1)=='M') {
+                	sum+=999;
+                	i+=2;
+                }else {
+                	sum+=1;
+                	i++;
+                }
+                break;
+            case 'V':
+            	if(i<n-1 && s.charAt(i+1)=='L') {
+                	sum+=45;
+                	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='C') {
+                 	sum+=95;
+                 	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='D') {
+                 	sum+=495;
+                 	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='M') {
+                 	sum+=995;
+                 	i+=2;
+            	} else {
+            	sum+=5;
+            	i++;
+            	}
+            	break;
+            case 'X':
+            	if(i<n-1 && s.charAt(i+1)=='L') {
+                	sum+=40;
+                	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='C') {
+                  	sum+=90;
+                  	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='D') {
+                  	sum+=490;
+                  	i+=2;
+            	 }else if(i<n-1 && s.charAt(i+1)=='M') {
+                  	sum+=990;
+                  	i+=2;
+            	 }else {
+            	sum+=10;
+            	i++;
+            	 }
+            	break;
+            case 'L':
+            	if(i<n-1 && s.charAt(i+1)=='D') {
+                	sum+=450;
+                	i+=2;
+            	}else if(i<n-1 && s.charAt(i+1)=='M') {
+                  	sum+=950;
+                  	i+=2;	
+            	}else {
+            	sum+=50;
+            	i++;
+            	}
+            	break;
+            case 'C':
+            	if(i<n-1 && s.charAt(i+1)=='D') {
+                	sum+=400;
+                	i+=2;
+            	}else if(i<n-1 && s.charAt(i+1)=='M') {
+                  	sum+=900;
+                  	i+=2;	
+            	}else {
+            	sum+=100;
+            	i++;
+            	}
+            	break;
+            case 'D':
+            	sum+=500;
+            	i++;
+            	break;
+            case 'M':
+            	sum+=1000;
+            	i++;
+            	break;
+        }
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+    	String[] s= {"III","IV","IX","LVIII","MCMXCIV"};
+   
+    	for(int i=0;i<s.length;i++) {
+    		System.out.println(romanToInt(s[i]));
+    	}
+    }
+}
