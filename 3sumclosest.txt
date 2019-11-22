@@ -1,0 +1,38 @@
+import java.util.*;
+public class threesumclosest {
+	   public static int threeSumClosest(int[] nums, int target) {
+		   Arrays.sort(nums);
+		   for(int i=0;i<nums.length;i++) {
+			   System.out.print(nums[i]+" ");
+		   }
+		   System.out.println();
+		   int result=0;
+		   int close=Integer.MAX_VALUE;
+		   if(nums==null || nums.length<3) return 0;
+		   for(int a=0;a<nums.length-2;a++) {
+			   for(int b=a+1,c=nums.length-1;b<c;) {
+				   int sum=nums[a]+nums[b]+nums[c];
+//				   if(sum==target) return sum;
+				   int dis=Math.abs(sum-target);
+				   if(dis<close) {
+					   close=dis;
+					   result=sum;
+				   }
+				   if(sum<target) {
+					   b++;
+				   }
+				   else if(sum>target) {
+					   c--;
+				   }
+				   else
+					   return sum;
+				   
+			   }
+		   }
+		   return result;
+	    }
+	   public static void main(String[] args) {
+		   int[] nums= {-1,2,1,-4};
+		   System.out.println(threeSumClosest(nums,1));
+	   }
+}
