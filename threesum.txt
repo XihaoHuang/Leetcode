@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class threesum {
+	public static List<List<Integer>> threeSum(int[] nums) {
+		List<List<Integer>> l1=new ArrayList<List<Integer>>();
+		Arrays.sort(nums);
+	
+		for(int a=0;a<nums.length-2;a++) {
+			if(a!=0 && nums[a]==nums[a-1]) continue;
+			int b=a+1;
+			int c=nums.length-1;
+			while(b<c) {
+				if(nums[a]+nums[b]+nums[c]==0) {
+					l1.add(Arrays.asList(nums[a],nums[b],nums[c]));
+					b++;
+					while(b<c && nums[b]==nums[b-1]) b++;
+				}
+				else if(nums[a]+nums[b]+nums[c]<0) {
+					b++;
+				}else {
+					c--;
+				}
+			}
+		}
+		return l1;
+	        
+	    }
+	
+	public static void main(String[] args) {
+		int nums[]= {-1,0,1,2,-1,-4};
+		int num1[]= {0,0,0,0};
+		System.out.println(threeSum(nums));
+		System.out.println(threeSum(num1));
+		
+	}
+}
