@@ -1,0 +1,24 @@
+class Solution {
+  	 boolean[][] visited;
+	 List<Integer> list=new ArrayList<>();
+	public List<Integer> spiralOrder(int[][] matrix) {
+        if(matrix.length==0) return list;
+		visited=new boolean[matrix.length][matrix[0].length];
+		spiralOrder(0,0,matrix,false);
+		return list;
+	}
+
+	private void spiralOrder(int r, int c, int[][] matrix,boolean up) {
+		if(r<0 || r>=matrix.length || c<0 || c>=matrix[0].length || visited[r][c]) return;
+		list.add(matrix[r][c]);
+		visited[r][c]=true;
+		if(up)
+			spiralOrder(r-1,c,matrix,true);
+		
+		spiralOrder(r,c+1,matrix,false);
+		spiralOrder(r+1,c,matrix,false);
+		spiralOrder(r,c-1,matrix,false);
+		spiralOrder(r-1,c,matrix,true);
+		
+	}
+}
