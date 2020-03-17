@@ -1,0 +1,23 @@
+class Solution {
+    boolean[][] visited;
+    int[][] arr;
+    public int[][] generateMatrix(int n) {
+        visited=new boolean[n][n];
+		arr=new int[n][n];
+		gm(0,0,1,false);
+		return arr;
+    }
+    private void gm(int r, int c, int i,boolean up) {
+		if(r<0 || r>=arr.length || c<0 || c>=arr.length || visited[r][c]) return;
+		arr[r][c]=i++;
+		visited[r][c]=true;
+		if(up)
+			gm(r-1,c,i,true);
+		
+		gm(r,c+1,i,false);
+		gm(r+1,c,i,false);
+		gm(r,c-1,i,false);
+		gm(r-1,c,i,true);
+	}
+
+}
