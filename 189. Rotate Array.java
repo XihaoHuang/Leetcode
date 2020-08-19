@@ -1,17 +1,13 @@
 class Solution {
-    public void rotate(int[] nums, int k) {
-        k%=nums.length;
-        int[] res=new int[k];
-        int n=res.length;
-        for(int i=nums.length-1;i>=0;i--){
-            if(--n>=0){
-                res[n]=nums[i];
-            }else{
-                nums[i+k]=nums[i];
+    public int minSubArrayLen(int s, int[] nums) {
+        int i=0,start=0,min=Integer.MAX_VALUE,sum=0;
+        while(i<nums.length){
+            sum+=nums[i++];
+            while(sum>=s){
+                min=Math.min(min,i-start);
+                sum-=nums[start++];
             }
         }
-    for(int i=0;i<res.length;i++){
-        nums[i]=res[i];
-    }
+        return min==Integer.MAX_VALUE?0:min;
     }
 }
