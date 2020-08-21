@@ -1,12 +1,20 @@
 class Solution {
-    public int missingNumber(int[] nums) {
-        Set<Integer> set=new HashSet<>();
-        for(int n:nums){
-            set.add(n);
+    public void moveZeroes(int[] nums) {
+        int start=0;
+        int end=nums.length-1;
+        while(start<=end){
+            if(nums[start]==0){
+                movetoend(nums,start,end);
+                end--;
+            }else{
+                start++;
+            }
         }
-        int n=-1;
-        while(set.contains(++n)){
+    }
+    public void movetoend(int[] n,int start,int end){
+        for(int i=start;i<end;i++){
+            n[i]=n[i+1];
         }
-        return n;
+        n[end]=0;
     }
 }
