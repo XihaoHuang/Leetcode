@@ -1,18 +1,12 @@
 class Solution {
-    public int[] productExceptSelf(int[] nums) {
-
-    int[] result = new int[nums.length];
-    int temp=1;
-    for (int i = 0; i < nums.length; i++) {
-        result[i] = temp;
-        temp*= nums[i];
+    public int missingNumber(int[] nums) {
+        Set<Integer> set=new HashSet<>();
+        for(int n:nums){
+            set.add(n);
+        }
+        int n=-1;
+        while(set.contains(++n)){
+        }
+        return n;
     }
-        temp=1;
-    for (int i = nums.length - 1; i >= 0; i--) {
-        result[i] *= temp;
-        temp *= nums[i];
-    }
-    return result;
-    }
-
 }
