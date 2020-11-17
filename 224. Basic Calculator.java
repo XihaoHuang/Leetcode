@@ -1,33 +1,41 @@
-class Solution {
-    public int calculate(String s) {
-        Stack<Integer> ss=new Stack<>();
-        int result=0;
-        int number=0;
-        int sign=1;
-        for(int i=0;i<s.length();i++){
-            char c=s.charAt(i);
-            if(Character.isDigit(c)){
-                number=number*10+(int)(c-'0');
-            }else if(c=='+'){
-                result+=sign*number;
-                number=0;
-                sign=1;
-            }else if(c=='-'){
-                result+=sign*number;
-                number=0;
-                sign=-1;
-            }else if(c=='('){
-                ss.push(result);
-                ss.push(sign);
-                sign=1;
-                result=0;
-            }else if(c==')'){
-                result+=sign*number;
-                number=0;
-                result*=ss.pop();
-                result+=ss.pop();
-            }
+class MyStack {
+    Queue<Integer> q;
+    /** Initialize your data structure here. */
+    public MyStack() {
+        q=new LinkedList<>();
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        Queue<Integer> q1=new LinkedList<>();
+        q1.add(x);
+        while(!q.isEmpty()){
+            q1.add(q.poll());
         }
-        return (number!=0) ? result+sign*number : result;
+        q=q1;
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        return q.poll();
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return q.peek();
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return q.isEmpty();
     }
 }
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
