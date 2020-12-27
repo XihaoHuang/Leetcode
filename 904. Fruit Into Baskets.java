@@ -1,25 +1,14 @@
 class Solution {
-    public int totalFruit(int[] tree) {
-        int first=-1;
-        int second=-1;
-        int lastcount=0;
-        int max=0;
-        int res=0;
-        for(int fruit:tree){
-            if(fruit==first || fruit==second){
-                max++;
-            }else{
-                max=lastcount+1;
+    public boolean isLongPressedName(String name, String typed) {
+        int n=0;
+        for(int i=0;i<typed.length();i++){
+            if(n<name.length() && typed.charAt(i)==name.charAt(n)){
+                n++;
+            }else
+                if(i==0 || typed.charAt(i)!=typed.charAt(i-1)){
+                return false;
             }
-            if(fruit==second){
-                lastcount++;
-            }else{
-                lastcount=1;
-                first=second;
-                second=fruit;
-            }
-            res=Math.max(res,max);
         }
-        return res;
+        return n==name.length();
     }
 }
