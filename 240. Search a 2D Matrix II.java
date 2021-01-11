@@ -1,14 +1,17 @@
 class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
-        int rol=0,col=matrix[0].length-1;
-        while(col>=0 && rol<matrix.length){
-            if(matrix[rol][col]==target)
-                return true;
-            else if(matrix[rol][col]>target)
-                col--;
-            else if(matrix[rol][col]<target)
-                rol++;
+    public int hIndex(int[] citations) {
+        int start=0,end=citations.length-1;
+        int length=citations.length;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(length-mid==citations[mid])
+                return length-mid;
+            else if(length-mid>citations[mid]){
+                start=mid+1;
+            }else{
+                end=mid-1;
+            }
         }
-        return false;
+        return length-start;
     }
 }
