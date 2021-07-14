@@ -17,21 +17,23 @@ class Solution {
     Queue<Integer> q;
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
         q=new LinkedList<>();
-        preorder(root);
-        Queue<Integer> ans=new LinkedList<>();
-        int size=0;
-        while(size++<k)
-            ans.add(q.remove());
-        while(!q.isEmpty() && Math.abs(q.peek()-target)<Math.abs(ans.peek()-target)){
-            ans.remove();
-            ans.add(q.remove());
-        }
-        return new ArrayList<>(ans);
+        preorder(root,target,k);
+        return new ArrayList<>(q);
     }
-    public void preorder(TreeNode root){
+    public void preorder(TreeNode root,double t,int k){
         if(root==null) return ;
-        preorder(root.left);
-        q.add(root.val);
-        preorder(root.right);
+        preorder(root.left,t,k);
+        if(q.size()<k)
+            q.add(root.val);
+        else{
+            if(Math.abs(q.peek()-t)>Math.abs(root.val-t)){
+                q.remove();
+                q.add(root.val);
+            }else{
+                return;
+            }
+        }
+        
+        preorder(root.right,t,k);
     }
 }
